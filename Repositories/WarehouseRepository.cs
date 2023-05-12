@@ -1,13 +1,11 @@
 ﻿using Consid_TestUppgift.Data;
 using Consid_TestUppgift.Interfaces;
 using Consid_TestUppgift.Models;
-using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.EntityFrameworkCore;
-using System.Runtime.InteropServices;
 
 namespace Consid_TestUppgift.Repositories
 {
-    public class WarehouseRepository : IGenericRepository<Warehouse>
+    public class WarehouseRepository : IWarehouseRespository
     {
         private readonly ApplicationContext _context;
 
@@ -15,13 +13,23 @@ namespace Consid_TestUppgift.Repositories
         {
             _context = context;
         }
-        public async Task AddEntity(Warehouse entity)
+        public async Task AddNewWarehouse(Warehouse warehouse)
         {
-            _context.Warehouses.Add(entity);
+            _context.Warehouses.Add(warehouse);
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteEntity(int id)
+        //public Task ChangeQuantityOfProductInWarehouse(int id, ProductWarehouse product)
+        //{
+        //    var productToUpdate = _context.ProductWarehouse.FirstOrDefaultAsync(p => p.ProductId == id);
+
+        //    if (productToUpdate != null)
+        //    {
+        //        productToUpdate.
+        //    }
+        //}
+
+        public async Task DeleteWarehouse(int id)
         {
             var warehouseToDelete = await _context.Warehouses.FindAsync(id);
 
@@ -36,12 +44,41 @@ namespace Consid_TestUppgift.Repositories
             }
         }
 
-        public async Task<IEnumerable<Warehouse>> GetAll()
+        public async Task<IEnumerable<Warehouse>> GetAllWarehouses()
         {
-           return await _context.Warehouses.ToListAsync();
+            return await _context.Warehouses.ToListAsync();
         }
 
-        public async Task<Warehouse> GetEntityById(int id)
+        public async Task<Product> GetProductByIdInWarehouse(int id)
+        {
+            var product = await _context.Products.FirstOrDefaultAsync(x => x.ProductId == id);
+            if (product != null)
+            {
+                return product;
+            }
+            else
+            {
+                throw new ArgumentException("No product found with the specified ID was found in the Warehouse", nameof(id));
+            }
+        }
+
+        public async Task<IEnumerable<ProductWarehouse>> GetProductsInWarehouseById(int id)
+        {
+            var selectedWarehouse = await _context.Warehouses.FirstOrDefaultAsync(x => x.WarehouseId == id);
+            if (selectedWarehouse != null)
+            {
+                var products = _context.ProductWarehouse.Where(x => x.WarehouseId == id);
+
+                return products;
+            }
+            else
+            {
+                throw new ArgumentException("No warehouse found with the specified ID", nameof(id));
+            }
+
+        }
+
+        public async Task<Warehouse> GetWarehouseById(int id)
         {
             var selectedWarehouse = await _context.Warehouses.FirstOrDefaultAsync(x => x.WarehouseId == id);
 
@@ -55,9 +92,9 @@ namespace Consid_TestUppgift.Repositories
             }
         }
 
-        public async Task UpdateEntity(Warehouse entity)
+        public async Task UpdateWarehouse(Warehouse warehouse)
         {
-            _context.Entry(entity).State = EntityState.Modified;
+            _context.Entry(warehouse).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         }
     }

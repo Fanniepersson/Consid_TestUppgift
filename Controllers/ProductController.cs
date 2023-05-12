@@ -1,6 +1,5 @@
 ﻿using Consid_TestUppgift.Interfaces;
 using Consid_TestUppgift.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Consid_TestUppgift.Controllers
@@ -10,52 +9,52 @@ namespace Consid_TestUppgift.Controllers
     public class ProductController : ControllerBase
     {
 
-        private readonly IGenericRepository<Product>? _product;
+        private readonly IProductRepository? _product;
 
-        public ProductController(IGenericRepository<Product>? product)
+        public ProductController(IProductRepository? product)
         {
             _product = product;
         }
 
         //Get all products
         [HttpGet]
-        public IActionResult GetAllProducts()
+        public async Task<IActionResult> GetAll()
         {
-            var products = _product.GetAll();
-            return Ok(products);
+            var products = _product.GetAllProducts();
+            return Ok(await products);
         }
 
         //Get product by Id
         [HttpGet]
         [Route("Id")]
         [ActionName("GetProductById")]
-        public IActionResult GetProductById(int id)
+        public async Task<IActionResult> GetById(int id)
         {
-            var product = _product.GetEntityById(id);
-            return Ok(product);
+            var product = _product.GetProductById(id);
+            return Ok(await product);
         }
 
 
         //Create new product
         [HttpPost]
-        public IActionResult CreateProduct(Product product)
+        public async Task<IActionResult> Create(Product product)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
-            _product.AddEntity(product);
-            return CreatedAtAction(nameof(CreateProduct),new { id = product.ProductId }, product);
+            await _product.AddNewProduct(product);
+            return CreatedAtAction(nameof(Create),new { id = product.ProductId }, product);
         }
 
         //Update product
         [HttpPut]
         [Route("{id:int}")]
-        public IActionResult UpdateProduct(int id, Product product)
+        public async Task<IActionResult> Update(int id, Product product)
         {
             if (id != 0)
             {
-                _product.UpdateEntity(product);
+               await _product.UpdateProduct(product);
                 return Ok(product);
             }
             return NotFound("Product not found");
@@ -64,11 +63,11 @@ namespace Consid_TestUppgift.Controllers
         //Delete product
         [HttpDelete]
         [Route("{id:int}")]
-        public IActionResult DeleteProduct(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             if (id != 0)
             {
-                _product.DeleteEntity(id);
+               await _product.DeleteProduct(id);
                 return Ok();
             }
             return NotFound("Product not found");

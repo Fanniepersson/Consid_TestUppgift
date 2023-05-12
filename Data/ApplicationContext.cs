@@ -1,5 +1,6 @@
 ﻿using Consid_TestUppgift.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Drawing;
 
 namespace Consid_TestUppgift.Data
 {
@@ -9,7 +10,8 @@ namespace Consid_TestUppgift.Data
         public DbSet<Supplier> Suppliers { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Warehouse> Warehouses { get; set; }
-
+        public DbSet<ProductWarehouse> ProductWarehouse { get; set; }
+        public DbSet<ProductSupplier> ProductSupplier { get; set; }
         public ApplicationContext(DbContextOptions options) : base(options)
         {
 
@@ -49,19 +51,114 @@ namespace Consid_TestUppgift.Data
             });
 
 
-            modelBuilder.Entity<Supplier>().HasData(new Supplier { SupplierId = 1, SupplierName = "Supplier1" });
-            modelBuilder.Entity<Supplier>().HasData(new Supplier { SupplierId = 2, SupplierName = "Supplier2" });
-            modelBuilder.Entity<Supplier>().HasData(new Supplier { SupplierId = 3, SupplierName = "Supplier3" });
+            modelBuilder.Entity<Supplier>().HasData(new Supplier { SupplierId = 1, SupplierName = "Elgiganten" });
+            modelBuilder.Entity<Supplier>().HasData(new Supplier { SupplierId = 2, SupplierName = "Mediamarket" });
+            modelBuilder.Entity<Supplier>().HasData(new Supplier { SupplierId = 3, SupplierName = "NetOnNet" });
 
-            modelBuilder.Entity<Product>().HasData(new Product { ProductId = 1, ProductName = "Product1", Price = 1000, Description = "Product 1" });
-            modelBuilder.Entity<Product>().HasData(new Product { ProductId = 2, ProductName = "Product2", Price = 100, Description = "Product 2" });
-            modelBuilder.Entity<Product>().HasData(new Product { ProductId = 3, ProductName = "Product3", Price = 10000, Description = "Product 3" });
+            modelBuilder.Entity<Product>().HasData(new Product { ProductId = 1, ProductName = "Samsung Tv 50", Price = 10000,
+                Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt." });
 
-            modelBuilder.Entity<Warehouse>().HasData(new Warehouse { WarehouseId = 1, WarehouseName = "Warehouse1" });
-            modelBuilder.Entity<Warehouse>().HasData(new Warehouse { WarehouseId = 2, WarehouseName = "Warehouse2" });
-            modelBuilder.Entity<Warehouse>().HasData(new Warehouse { WarehouseId = 3, WarehouseName = "Warehouse3" });
+            modelBuilder.Entity<Product>().HasData(new Product { ProductId = 2, ProductName = "Macbook Pro 13", Price = 23000, 
+                Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt." });
+
+            modelBuilder.Entity<Product>().HasData(new Product { ProductId = 3, ProductName = "Macbook Air 11", Price = 11000,
+                Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt." });
+
+            modelBuilder.Entity<Product>().HasData(new Product { ProductId = 4, ProductName = "Macbook Air 13", Price = 13000,
+                Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt." });
+
+            modelBuilder.Entity<Product>().HasData(new Product { ProductId = 5, ProductName = "Macbook Pro 11", Price = 21000,
+                Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt." });
+
+            modelBuilder.Entity<Product>().HasData(new Product { ProductId = 6, ProductName = "LG 65", Price = 14000,
+                Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt." });
+
+            modelBuilder.Entity<Product>().HasData(new Product { ProductId = 7, ProductName = "LG 50", Price = 9999,
+                Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt." });
+
+            modelBuilder.Entity<Product>().HasData(new Product { ProductId = 8, ProductName = "Iphone 13", Price = 10500,
+                Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt." });
+
+            modelBuilder.Entity<Product>().HasData(new Product { ProductId = 9, ProductName = "Iphone 12", Price = 9500,
+                Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt." });
+
+            modelBuilder.Entity<Product>().HasData(new Product { ProductId = 10, ProductName = "Samsung Tv 40", Price = 8500,
+                Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt." });
+
+            modelBuilder.Entity<Warehouse>().HasData(new Warehouse { WarehouseId = 1, WarehouseName = "Lager Ängelholm" });
+            modelBuilder.Entity<Warehouse>().HasData(new Warehouse { WarehouseId = 2, WarehouseName = "Lager Kristianstad" });
+            modelBuilder.Entity<Warehouse>().HasData(new Warehouse { WarehouseId = 3, WarehouseName = "Lager Halmstad" });
+            modelBuilder.Entity<Warehouse>().HasData(new Warehouse { WarehouseId = 4, WarehouseName = "Lager Kungsbacka" });
+
+
+            modelBuilder.Entity<ProductWarehouse>().HasData(new ProductWarehouse { ProductId = 1, WarehouseId = 1, QuantityInStock = 30 });
+            modelBuilder.Entity<ProductWarehouse>().HasData(new ProductWarehouse { ProductId = 1, WarehouseId = 2, QuantityInStock = 100 });
+            modelBuilder.Entity<ProductWarehouse>().HasData(new ProductWarehouse { ProductId = 1, WarehouseId = 3, QuantityInStock = 20 });
+            modelBuilder.Entity<ProductWarehouse>().HasData(new ProductWarehouse { ProductId = 1, WarehouseId = 4, QuantityInStock = 2 });
+
+            modelBuilder.Entity<ProductWarehouse>().HasData(new ProductWarehouse { ProductId = 2, WarehouseId = 1, QuantityInStock = 40 });
+            modelBuilder.Entity<ProductWarehouse>().HasData(new ProductWarehouse { ProductId = 2, WarehouseId = 4, QuantityInStock = 120 });
+
+            modelBuilder.Entity<ProductWarehouse>().HasData(new ProductWarehouse { ProductId = 3, WarehouseId = 3, QuantityInStock = 140 });
+            modelBuilder.Entity<ProductWarehouse>().HasData(new ProductWarehouse { ProductId = 3, WarehouseId = 2, QuantityInStock = 30 });
+
+            modelBuilder.Entity<ProductWarehouse>().HasData(new ProductWarehouse { ProductId = 4, WarehouseId = 1, QuantityInStock = 120 });
+            modelBuilder.Entity<ProductWarehouse>().HasData(new ProductWarehouse { ProductId = 4, WarehouseId = 2, QuantityInStock = 50 });
+            modelBuilder.Entity<ProductWarehouse>().HasData(new ProductWarehouse { ProductId = 4, WarehouseId = 3, QuantityInStock = 20 });
+            modelBuilder.Entity<ProductWarehouse>().HasData(new ProductWarehouse { ProductId = 4, WarehouseId = 4, QuantityInStock = 110 });
+
+            modelBuilder.Entity<ProductWarehouse>().HasData(new ProductWarehouse { ProductId = 5, WarehouseId = 2, QuantityInStock = 60 });
+            modelBuilder.Entity<ProductWarehouse>().HasData(new ProductWarehouse { ProductId = 5, WarehouseId = 3, QuantityInStock = 20 });
+            modelBuilder.Entity<ProductWarehouse>().HasData(new ProductWarehouse { ProductId = 5, WarehouseId = 4, QuantityInStock = 110 });
+
+            modelBuilder.Entity<ProductWarehouse>().HasData(new ProductWarehouse { ProductId = 6, WarehouseId = 1, QuantityInStock = 180 });
+            modelBuilder.Entity<ProductWarehouse>().HasData(new ProductWarehouse { ProductId = 6, WarehouseId = 2, QuantityInStock = 200 });
+
+            modelBuilder.Entity<ProductWarehouse>().HasData(new ProductWarehouse { ProductId = 7, WarehouseId = 2, QuantityInStock = 130 });
+            modelBuilder.Entity<ProductWarehouse>().HasData(new ProductWarehouse { ProductId = 7, WarehouseId = 4, QuantityInStock = 40 });
+
+            modelBuilder.Entity<ProductWarehouse>().HasData(new ProductWarehouse { ProductId = 8, WarehouseId = 1, QuantityInStock = 30 });
+            modelBuilder.Entity<ProductWarehouse>().HasData(new ProductWarehouse { ProductId = 8, WarehouseId = 2, QuantityInStock = 300 });
+            modelBuilder.Entity<ProductWarehouse>().HasData(new ProductWarehouse { ProductId = 8, WarehouseId = 3, QuantityInStock = 100 });
+            modelBuilder.Entity<ProductWarehouse>().HasData(new ProductWarehouse { ProductId = 8, WarehouseId = 4, QuantityInStock = 80 });
+
+            modelBuilder.Entity<ProductWarehouse>().HasData(new ProductWarehouse { ProductId = 9, WarehouseId = 1, QuantityInStock = 110 });
+            modelBuilder.Entity<ProductWarehouse>().HasData(new ProductWarehouse { ProductId = 9, WarehouseId = 2, QuantityInStock = 70 });
+            modelBuilder.Entity<ProductWarehouse>().HasData(new ProductWarehouse { ProductId = 9, WarehouseId = 3, QuantityInStock = 350 });
+            modelBuilder.Entity<ProductWarehouse>().HasData(new ProductWarehouse { ProductId = 9, WarehouseId = 4, QuantityInStock = 40 });
+
+            modelBuilder.Entity<ProductWarehouse>().HasData(new ProductWarehouse { ProductId = 10, WarehouseId = 3, QuantityInStock = 40 });
+            modelBuilder.Entity<ProductWarehouse>().HasData(new ProductWarehouse { ProductId = 10, WarehouseId = 4, QuantityInStock = 70 });
+
+
+            modelBuilder.Entity<ProductSupplier>().HasData(new ProductSupplier { ProductId = 1, SupplierId = 1, QuantityForSale = 10 });
+            modelBuilder.Entity<ProductSupplier>().HasData(new ProductSupplier { ProductId = 1, SupplierId = 2, QuantityForSale = 5 });
+
+            modelBuilder.Entity<ProductSupplier>().HasData(new ProductSupplier { ProductId = 2, SupplierId = 1, QuantityForSale = 10 });
+            modelBuilder.Entity<ProductSupplier>().HasData(new ProductSupplier { ProductId = 2, SupplierId = 2, QuantityForSale = 2 });
+            modelBuilder.Entity<ProductSupplier>().HasData(new ProductSupplier { ProductId = 2, SupplierId = 3, QuantityForSale = 20 });
+
+            modelBuilder.Entity<ProductSupplier>().HasData(new ProductSupplier { ProductId = 3, SupplierId = 1, QuantityForSale = 4 });
+            modelBuilder.Entity<ProductSupplier>().HasData(new ProductSupplier { ProductId = 3, SupplierId = 3, QuantityForSale = 20 });
+
+            modelBuilder.Entity<ProductSupplier>().HasData(new ProductSupplier { ProductId = 4, SupplierId = 1, QuantityForSale = 5 });
+            modelBuilder.Entity<ProductSupplier>().HasData(new ProductSupplier { ProductId = 4, SupplierId = 2, QuantityForSale = 10 });
+            modelBuilder.Entity<ProductSupplier>().HasData(new ProductSupplier { ProductId = 4, SupplierId = 3, QuantityForSale = 12 });
+
+            modelBuilder.Entity<ProductSupplier>().HasData(new ProductSupplier { ProductId = 5, SupplierId = 1, QuantityForSale = 11 });
+
+            modelBuilder.Entity<ProductSupplier>().HasData(new ProductSupplier { ProductId = 6, SupplierId = 2, QuantityForSale = 20 });
+            modelBuilder.Entity<ProductSupplier>().HasData(new ProductSupplier { ProductId = 6, SupplierId = 3, QuantityForSale = 3 });
+
+            modelBuilder.Entity<ProductSupplier>().HasData(new ProductSupplier { ProductId = 7, SupplierId = 3, QuantityForSale = 15 });
+
+            modelBuilder.Entity<ProductSupplier>().HasData(new ProductSupplier { ProductId = 8, SupplierId = 2, QuantityForSale = 20 });
+           
+            modelBuilder.Entity<ProductSupplier>().HasData(new ProductSupplier { ProductId = 9, SupplierId = 1, QuantityForSale = 8 });
+            modelBuilder.Entity<ProductSupplier>().HasData(new ProductSupplier { ProductId = 9, SupplierId = 2, QuantityForSale = 2 });
+            modelBuilder.Entity<ProductSupplier>().HasData(new ProductSupplier { ProductId = 9, SupplierId = 3, QuantityForSale = 10 });
+
+            modelBuilder.Entity<ProductSupplier>().HasData(new ProductSupplier { ProductId = 10, SupplierId = 2, QuantityForSale = 13 });
         }
-
-
     }
 }

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Consid_TestUppgift.Repositories
 {
-    public class SupplierRepository : IGenericRepository<Supplier>
+    public class SupplierRepository : ISupplierRepository
     {
         private readonly ApplicationContext _context;
         public SupplierRepository(ApplicationContext context)
@@ -13,19 +13,19 @@ namespace Consid_TestUppgift.Repositories
             _context = context;
         }
 
-        public async Task AddEntity(Supplier entity)
+        public async Task AddNewSupplier(Supplier supplier)
         {
-            _context.Suppliers.Add(entity);
-          await _context.SaveChangesAsync();
+            _context.Suppliers.Add(supplier);
+            await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteEntity(int id)
+        public async Task DeleteSupplier(int id)
         {
             var supplierToDelete = await _context.Suppliers.FindAsync(id);
             if (supplierToDelete != null)
             {
                 _context.Suppliers.Remove(supplierToDelete);
-                 await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
             }
             else
             {
@@ -33,28 +33,28 @@ namespace Consid_TestUppgift.Repositories
             }
         }
 
-        public async Task<IEnumerable<Supplier>> GetAll()
+        public async Task<Supplier> GetSupplierById(int id)
+        {
+            var selectedSupplier = await _context.Suppliers.FirstOrDefaultAsync(x => x.SupplierId == id);
+
+            if (selectedSupplier != null)
+            {
+                return selectedSupplier;
+            }
+            else
+            {
+                throw new ArgumentException("No supplier found with the specified ID", nameof(id));
+            }
+        }
+
+        public async Task<IEnumerable<Supplier>> GetAllSuppliers()
         {
             return await _context.Suppliers.ToListAsync();
         }
 
-        public async Task<Supplier> GetEntityById(int id)
+        public async Task UpdateSupplier(Supplier supplier)
         {
-           var selectedSupplier = await _context.Suppliers.FirstOrDefaultAsync(x => x.SupplierId == id);
-
-            if (selectedSupplier != null)
-            {
-             return selectedSupplier;
-            }
-            else
-            {
-                throw new ArgumentException("No supplier found with the specified ID", nameof(id));
-            }
-        }
-
-        public async Task UpdateEntity(Supplier entity)
-        {
-            _context.Entry(entity).State = EntityState.Modified;
+            _context.Entry(supplier).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         }
     }
