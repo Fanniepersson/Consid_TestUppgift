@@ -61,10 +61,5 @@ namespace Consid_TestUppgift.Repositories
             _context.Entry(product).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         }
-
-        //public async Task<IEnumerable<Product>> GetAllSuppliersWithProductsInWarehouse()
-        //{
-        //    return await _context.Products.Include(p => p.Suppliers).Include(w => w.Warehouses).ToListAsync();
-        //}
     }
 }

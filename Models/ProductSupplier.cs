@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Security.Principal;
-
+﻿
 namespace Consid_TestUppgift.Models
 {
     public class ProductSupplier

@@ -9,7 +9,6 @@ namespace Consid_TestUppgift.Interfaces
         public Task UpdateProduct(Product product);
         public Task<IEnumerable<Product>> GetProductByName(string productName);
         public Task<IEnumerable<Product>> GetAllProducts();
-        //public Task<IEnumerable<Product>> GetAllSuppliersWithProductsInWarehouse();
 
     }
 }

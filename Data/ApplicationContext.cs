@@ -1,6 +1,5 @@
 ﻿using Consid_TestUppgift.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Drawing;
 
 namespace Consid_TestUppgift.Data
 {
