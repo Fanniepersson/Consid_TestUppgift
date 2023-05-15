@@ -19,15 +19,16 @@ namespace Consid_TestUppgift.Repositories
             await _context.SaveChangesAsync();
         }
 
-        //public Task ChangeQuantityOfProductInWarehouse(int id, ProductWarehouse product)
-        //{
-        //    var productToUpdate = _context.ProductWarehouse.FirstOrDefaultAsync(p => p.ProductId == id);
+        public async Task UpdateQuantityOfProductInWarehouse(int productId, int warehouseId, ProductWarehouse product)
+        {
+            var productToUpdate = await _context.ProductWarehouse.Where(x => x.WarehouseId == warehouseId).FirstOrDefaultAsync(p => p.ProductId == productId);
 
-        //    if (productToUpdate != null)
-        //    {
-        //        productToUpdate.
-        //    }
-        //}
+            if (productToUpdate != null)
+            {
+                productToUpdate.QuantityInStock = product.QuantityInStock;
+                await _context.SaveChangesAsync();
+            }
+        }
 
         public async Task DeleteWarehouse(int id)
         {
@@ -62,20 +63,18 @@ namespace Consid_TestUppgift.Repositories
             }
         }
 
-        public async Task<IEnumerable<ProductWarehouse>> GetProductsInWarehouseById(int id)
+        public async Task<Warehouse> GetProductsInWarehouseById(int id)
         {
-            var selectedWarehouse = await _context.Warehouses.FirstOrDefaultAsync(x => x.WarehouseId == id);
+            var selectedWarehouse = await _context.Warehouses.Include(x => x.Products).FirstOrDefaultAsync(x => x.WarehouseId == id);
+
             if (selectedWarehouse != null)
             {
-                var products = _context.ProductWarehouse.Where(x => x.WarehouseId == id);
-
-                return products;
+                return selectedWarehouse;
             }
             else
             {
                 throw new ArgumentException("No warehouse found with the specified ID", nameof(id));
             }
-
         }
 
         public async Task<Warehouse> GetWarehouseById(int id)

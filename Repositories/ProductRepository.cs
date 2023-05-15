@@ -39,19 +39,20 @@ namespace Consid_TestUppgift.Repositories
             return await _context.Products.ToListAsync();
         }
 
-        public async Task<List<Product>> GetProductById(int id)
+        public async Task<IEnumerable<Product>> GetProductByName(string productName)
         {
-            var selectedProduct = await _context.Products.FirstOrDefaultAsync(x => x.ProductId == id);
-
-            if (selectedProduct != null)
+            if (productName != null)
             {
-              var productInWarehouse = await _context.Products.Where(x => x.ProductId == id).Include(p => p.Warehouses).ToListAsync();
+                var productInWarehouse = await _context.Products
+                    .Where(x => x.ProductName.StartsWith(productName))
+                    .Include(p => p.Warehouses)
+                    .ToListAsync();
 
                 return productInWarehouse;
             }
             else
             {
-                throw new ArgumentException("No product found with the specified ID", nameof(id));
+                throw new ArgumentException("No product found with the specified name");
             }
         }
 

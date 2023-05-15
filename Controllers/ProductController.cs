@@ -20,18 +20,17 @@ namespace Consid_TestUppgift.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var products = _product.GetAllProducts();
-            return Ok(await products);
+            var products = await _product.GetAllProducts();
+            return Ok(products);
         }
 
-        //Get product by Id
-        [HttpGet]
-        [Route("Id")]
-        [ActionName("GetProductById")]
-        public async Task<IActionResult> GetById(int id)
+        //Get product by name
+        [HttpGet("{productName}")]
+        [ActionName("GetProductByName")]
+        public async Task<IActionResult> GetByName(string productName)
         {
-            var product = _product.GetProductById(id);
-            return Ok(await product);
+            var product = await _product.GetProductByName(productName);
+            return Ok(product);
         }
 
 

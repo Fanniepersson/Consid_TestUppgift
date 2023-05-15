@@ -49,7 +49,7 @@ namespace Consid_TestUppgift.Repositories
 
         public async Task<IEnumerable<Supplier>> GetAllSuppliers()
         {
-            return await _context.Suppliers.ToListAsync();
+            return await _context.Suppliers.Include(x => x.Products).ToListAsync();
         }
 
         public async Task UpdateSupplier(Supplier supplier)

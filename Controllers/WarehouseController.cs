@@ -23,21 +23,12 @@ namespace Consid_TestUppgift.Controllers
             return Ok(await warehouses);
         }
 
-        //[HttpGet]
-        //[Route("Id")]
-        //[ActionName("GetWarehouseById")]
-        //public async Task<IActionResult> GetById(int id)
-        //{
-        //    var warehouse = _warehouse.GetWarehouseById(id);
-        //    return Ok(await warehouse);
-        //}
-
 
         //Get warehouse by Id
         [HttpGet]
         [Route("Id")]
-        [ActionName("GetWarehouseWithProducts")]
-        public async Task<IActionResult> GetByIdWithProducts(int id)
+        [ActionName("GetWarehouseById")]
+        public async Task<IActionResult>GetById(int id)
         {
             var productsInWarehouse = _warehouse.GetProductsInWarehouseById(id);
             return Ok(await productsInWarehouse);
@@ -67,6 +58,7 @@ namespace Consid_TestUppgift.Controllers
             }
             return NotFound("Warehouse not found");
         }
+
 
         //Delete warehouse
         [HttpDelete]
