@@ -23,17 +23,7 @@ namespace Consid_TestUppgift.Controllers
             return Ok(await warehouses);
         }
 
-
-        //Get warehouse by Id
-        [HttpGet]
-        [Route("Id")]
-        [ActionName("GetWarehouseById")]
-        public async Task<IActionResult>GetById(int id)
-        {
-            var productsInWarehouse = _warehouse.GetProductsInWarehouseById(id);
-            return Ok(await productsInWarehouse);
-        }
-
+        
         //Create new warehouse
         [HttpPost]
         public async Task<IActionResult> Create(Warehouse warehouse)

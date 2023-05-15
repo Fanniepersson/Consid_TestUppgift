@@ -24,16 +24,6 @@ namespace Consid_TestUppgift.Controllers
             return Ok(await suppliers);
         }
 
-        //Get supplier by Id
-        [HttpGet]
-        [Route("Id")]
-        [ActionName("GetSupplierById")]
-        public async Task<IActionResult> GetById(int id)
-        {
-            var supplier = _supplier.GetSupplierById(id);
-            return Ok(await supplier);
-        }
-
 
         //Create new supplier
         [HttpPost]

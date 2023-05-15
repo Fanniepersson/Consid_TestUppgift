@@ -9,6 +9,6 @@ namespace Consid_TestUppgift.Models
         [Required]
         public string? SupplierName { get; set; }
 
-        public virtual ICollection<ProductSupplier>? Products { get; set; }
+        public ICollection<ProductSupplier>? Products { get; set; }
     }
 }

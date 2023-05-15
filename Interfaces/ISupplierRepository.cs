@@ -9,5 +9,7 @@ namespace Consid_TestUppgift.Interfaces
         public Task UpdateSupplier(Supplier supplier);
         public Task<IEnumerable<Supplier>> GetAllSuppliers();
         public Task<Supplier> GetSupplierById(int id);
+        public Task<IEnumerable<Supplier>> GetAllSuppliersWithProductsInWarehouse();
+
     }
 }

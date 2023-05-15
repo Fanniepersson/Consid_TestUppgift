@@ -62,9 +62,9 @@ namespace Consid_TestUppgift.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Product>> GetAllSuppliersWithProductsInWarehouse()
-        {
-            return await _context.Products.Include(p => p.Suppliers).Include(w => w.Warehouses).ToListAsync();
-        }
+        //public async Task<IEnumerable<Product>> GetAllSuppliersWithProductsInWarehouse()
+        //{
+        //    return await _context.Products.Include(p => p.Suppliers).Include(w => w.Warehouses).ToListAsync();
+        //}
     }
 }

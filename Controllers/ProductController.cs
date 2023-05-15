@@ -26,7 +26,6 @@ namespace Consid_TestUppgift.Controllers
 
         //Get product by name
         [HttpGet("{productName}")]
-        [ActionName("GetProductByName")]
         public async Task<IActionResult> GetByName(string productName)
         {
             var product = await _product.GetProductByName(productName);

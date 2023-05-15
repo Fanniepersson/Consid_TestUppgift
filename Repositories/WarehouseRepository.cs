@@ -19,13 +19,14 @@ namespace Consid_TestUppgift.Repositories
             await _context.SaveChangesAsync();
         }
 
+        //Update quantities of items available in a warehouse
         public async Task UpdateQuantityOfProductInWarehouse(int productId, int warehouseId, ProductWarehouse product)
         {
-            var productToUpdate = await _context.ProductWarehouse.Where(x => x.WarehouseId == warehouseId).FirstOrDefaultAsync(p => p.ProductId == productId);
+            var productInWarehouseToUpdate = await _context.ProductWarehouse.Where(x => x.WarehouseId == warehouseId).FirstOrDefaultAsync(p => p.ProductId == productId);
 
-            if (productToUpdate != null)
+            if (productInWarehouseToUpdate != null)
             {
-                productToUpdate.QuantityInStock = product.QuantityInStock;
+                productInWarehouseToUpdate.QuantityInStock = product.QuantityInStock;
                 await _context.SaveChangesAsync();
             }
         }
@@ -48,33 +49,6 @@ namespace Consid_TestUppgift.Repositories
         public async Task<IEnumerable<Warehouse>> GetAllWarehouses()
         {
             return await _context.Warehouses.ToListAsync();
-        }
-
-        public async Task<Product> GetProductByIdInWarehouse(int id)
-        {
-            var product = await _context.Products.FirstOrDefaultAsync(x => x.ProductId == id);
-            if (product != null)
-            {
-                return product;
-            }
-            else
-            {
-                throw new ArgumentException("No product found with the specified ID was found in the Warehouse", nameof(id));
-            }
-        }
-
-        public async Task<Warehouse> GetProductsInWarehouseById(int id)
-        {
-            var selectedWarehouse = await _context.Warehouses.Include(x => x.Products).FirstOrDefaultAsync(x => x.WarehouseId == id);
-
-            if (selectedWarehouse != null)
-            {
-                return selectedWarehouse;
-            }
-            else
-            {
-                throw new ArgumentException("No warehouse found with the specified ID", nameof(id));
-            }
         }
 
         public async Task<Warehouse> GetWarehouseById(int id)

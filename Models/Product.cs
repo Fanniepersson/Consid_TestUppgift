@@ -11,7 +11,7 @@ namespace Consid_TestUppgift.Models
         public decimal? Price { get; set; }
         public string? Description { get; set; }
 
-        public virtual ICollection<ProductSupplier>? Suppliers { get; set; }
-        public virtual ICollection<ProductWarehouse>? Warehouses { get; set; }
+        public ICollection<ProductSupplier>? Suppliers { get; set; }
+        public ICollection<ProductWarehouse>? Warehouses { get; set; }
     }
 }

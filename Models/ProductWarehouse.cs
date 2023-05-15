@@ -1,4 +1,6 @@
-﻿namespace Consid_TestUppgift.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Consid_TestUppgift.Models
 {
     public class ProductWarehouse
     {
@@ -6,7 +8,8 @@
         public int WarehouseId { get; set; }
         public int QuantityInStock { get; set; }
 
-        public virtual Product? Product { get; set; }
-        public virtual Warehouse? Warehouse { get; set; }
+
+        public Product? Product { get; set; }
+        public Warehouse? Warehouse { get; set; }
     }
 }

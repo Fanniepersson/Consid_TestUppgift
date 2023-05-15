@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Consid_TestUppgift.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20230512120658_FirstMigration")]
+    [Migration("20230515153902_FirstMigration")]
     partial class FirstMigration
     {
         /// <inheritdoc />
@@ -60,64 +60,92 @@ namespace Consid_TestUppgift.Migrations
                         {
                             ProductId = 2,
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
-                            Price = 23000m,
-                            ProductName = "Macbook Pro 13"
+                            Price = 8500m,
+                            ProductName = "Samsung Tv 40"
                         },
                         new
                         {
                             ProductId = 3,
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
-                            Price = 11000m,
-                            ProductName = "Macbook Air 11"
+                            Price = 23000m,
+                            ProductName = "Macbook Pro 13"
                         },
                         new
                         {
                             ProductId = 4,
-                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
-                            Price = 13000m,
-                            ProductName = "Macbook Air 13"
-                        },
-                        new
-                        {
-                            ProductId = 5,
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
                             Price = 21000m,
                             ProductName = "Macbook Pro 11"
                         },
                         new
                         {
+                            ProductId = 5,
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
+                            Price = 11000m,
+                            ProductName = "Macbook Air 11"
+                        },
+                        new
+                        {
                             ProductId = 6,
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
-                            Price = 14000m,
-                            ProductName = "LG 65"
+                            Price = 13000m,
+                            ProductName = "Macbook Air 13"
                         },
                         new
                         {
                             ProductId = 7,
-                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
-                            Price = 9999m,
-                            ProductName = "LG 50"
-                        },
-                        new
-                        {
-                            ProductId = 8,
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
                             Price = 10500m,
                             ProductName = "Iphone 13"
                         },
                         new
                         {
-                            ProductId = 9,
+                            ProductId = 8,
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
                             Price = 9500m,
                             ProductName = "Iphone 12"
                         },
                         new
                         {
+                            ProductId = 9,
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
+                            Price = 14000m,
+                            ProductName = "Sony Tv 65"
+                        },
+                        new
+                        {
                             ProductId = 10,
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
-                            Price = 8500m,
-                            ProductName = "Samsung Tv 40"
+                            Price = 9999m,
+                            ProductName = "Sony Tv 50"
+                        },
+                        new
+                        {
+                            ProductId = 11,
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
+                            Price = 4999m,
+                            ProductName = "El scooter 400"
+                        },
+                        new
+                        {
+                            ProductId = 12,
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
+                            Price = 6999m,
+                            ProductName = "El scooter 500"
+                        },
+                        new
+                        {
+                            ProductId = 13,
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
+                            Price = 1200m,
+                            ProductName = "Smoothie blender"
+                        },
+                        new
+                        {
+                            ProductId = 14,
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
+                            Price = 3499m,
+                            ProductName = "Smart watch"
                         });
                 });
 
@@ -142,62 +170,26 @@ namespace Consid_TestUppgift.Migrations
                         new
                         {
                             ProductId = 1,
-                            SupplierId = 1,
-                            QuantityForSale = 10
-                        },
-                        new
-                        {
-                            ProductId = 1,
                             SupplierId = 2,
-                            QuantityForSale = 5
-                        },
-                        new
-                        {
-                            ProductId = 2,
-                            SupplierId = 1,
                             QuantityForSale = 10
                         },
                         new
                         {
                             ProductId = 2,
                             SupplierId = 2,
-                            QuantityForSale = 2
-                        },
-                        new
-                        {
-                            ProductId = 2,
-                            SupplierId = 3,
-                            QuantityForSale = 20
+                            QuantityForSale = 10
                         },
                         new
                         {
                             ProductId = 3,
                             SupplierId = 1,
-                            QuantityForSale = 4
-                        },
-                        new
-                        {
-                            ProductId = 3,
-                            SupplierId = 3,
-                            QuantityForSale = 20
+                            QuantityForSale = 40
                         },
                         new
                         {
                             ProductId = 4,
                             SupplierId = 1,
-                            QuantityForSale = 5
-                        },
-                        new
-                        {
-                            ProductId = 4,
-                            SupplierId = 2,
-                            QuantityForSale = 10
-                        },
-                        new
-                        {
-                            ProductId = 4,
-                            SupplierId = 3,
-                            QuantityForSale = 12
+                            QuantityForSale = 50
                         },
                         new
                         {
@@ -208,50 +200,80 @@ namespace Consid_TestUppgift.Migrations
                         new
                         {
                             ProductId = 6,
-                            SupplierId = 2,
+                            SupplierId = 1,
                             QuantityForSale = 20
                         },
                         new
                         {
-                            ProductId = 6,
-                            SupplierId = 3,
-                            QuantityForSale = 3
-                        },
-                        new
-                        {
                             ProductId = 7,
-                            SupplierId = 3,
+                            SupplierId = 1,
                             QuantityForSale = 15
                         },
                         new
                         {
                             ProductId = 8,
-                            SupplierId = 2,
+                            SupplierId = 1,
                             QuantityForSale = 20
                         },
                         new
                         {
                             ProductId = 9,
-                            SupplierId = 1,
+                            SupplierId = 3,
                             QuantityForSale = 8
                         },
                         new
                         {
-                            ProductId = 9,
+                            ProductId = 10,
+                            SupplierId = 3,
+                            QuantityForSale = 13
+                        },
+                        new
+                        {
+                            ProductId = 11,
+                            SupplierId = 2,
+                            QuantityForSale = 10
+                        },
+                        new
+                        {
+                            ProductId = 11,
+                            SupplierId = 3,
+                            QuantityForSale = 9
+                        },
+                        new
+                        {
+                            ProductId = 12,
+                            SupplierId = 2,
+                            QuantityForSale = 18
+                        },
+                        new
+                        {
+                            ProductId = 12,
+                            SupplierId = 3,
+                            QuantityForSale = 5
+                        },
+                        new
+                        {
+                            ProductId = 13,
                             SupplierId = 2,
                             QuantityForSale = 2
                         },
                         new
                         {
-                            ProductId = 9,
+                            ProductId = 13,
                             SupplierId = 3,
+                            QuantityForSale = 14
+                        },
+                        new
+                        {
+                            ProductId = 14,
+                            SupplierId = 2,
                             QuantityForSale = 10
                         },
                         new
                         {
-                            ProductId = 10,
-                            SupplierId = 2,
-                            QuantityForSale = 13
+                            ProductId = 14,
+                            SupplierId = 3,
+                            QuantityForSale = 2
                         });
                 });
 
@@ -446,6 +468,54 @@ namespace Consid_TestUppgift.Migrations
                             ProductId = 10,
                             WarehouseId = 4,
                             QuantityInStock = 70
+                        },
+                        new
+                        {
+                            ProductId = 11,
+                            WarehouseId = 1,
+                            QuantityInStock = 30
+                        },
+                        new
+                        {
+                            ProductId = 12,
+                            WarehouseId = 2,
+                            QuantityInStock = 70
+                        },
+                        new
+                        {
+                            ProductId = 12,
+                            WarehouseId = 3,
+                            QuantityInStock = 40
+                        },
+                        new
+                        {
+                            ProductId = 13,
+                            WarehouseId = 1,
+                            QuantityInStock = 20
+                        },
+                        new
+                        {
+                            ProductId = 13,
+                            WarehouseId = 2,
+                            QuantityInStock = 100
+                        },
+                        new
+                        {
+                            ProductId = 13,
+                            WarehouseId = 3,
+                            QuantityInStock = 10
+                        },
+                        new
+                        {
+                            ProductId = 14,
+                            WarehouseId = 1,
+                            QuantityInStock = 100
+                        },
+                        new
+                        {
+                            ProductId = 14,
+                            WarehouseId = 4,
+                            QuantityInStock = 120
                         });
                 });
 
@@ -470,17 +540,17 @@ namespace Consid_TestUppgift.Migrations
                         new
                         {
                             SupplierId = 1,
-                            SupplierName = "Elgiganten"
+                            SupplierName = "Apple"
                         },
                         new
                         {
                             SupplierId = 2,
-                            SupplierName = "Mediamarket"
+                            SupplierName = "Samsung"
                         },
                         new
                         {
                             SupplierId = 3,
-                            SupplierName = "NetOnNet"
+                            SupplierName = "Sony"
                         });
                 });
 
@@ -508,25 +578,25 @@ namespace Consid_TestUppgift.Migrations
                         new
                         {
                             WarehouseId = 1,
-                            Capacity = 0m,
+                            Capacity = 5000m,
                             WarehouseName = "Lager Ängelholm"
                         },
                         new
                         {
                             WarehouseId = 2,
-                            Capacity = 0m,
+                            Capacity = 2000m,
                             WarehouseName = "Lager Kristianstad"
                         },
                         new
                         {
                             WarehouseId = 3,
-                            Capacity = 0m,
+                            Capacity = 8000m,
                             WarehouseName = "Lager Halmstad"
                         },
                         new
                         {
                             WarehouseId = 4,
-                            Capacity = 0m,
+                            Capacity = 4500m,
                             WarehouseName = "Lager Kungsbacka"
                         });
                 });

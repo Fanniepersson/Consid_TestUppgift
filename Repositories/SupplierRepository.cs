@@ -49,13 +49,19 @@ namespace Consid_TestUppgift.Repositories
 
         public async Task<IEnumerable<Supplier>> GetAllSuppliers()
         {
-            return await _context.Suppliers.Include(x => x.Products).ToListAsync();
+            return await _context.Suppliers.ToListAsync();
         }
 
         public async Task UpdateSupplier(Supplier supplier)
         {
             _context.Entry(supplier).State = EntityState.Modified;
             await _context.SaveChangesAsync();
+        }
+
+        //Get all suppliers with their goods in warehouses
+        public async Task<IEnumerable<Supplier>> GetAllSuppliersWithProductsInWarehouse()
+        {
+             return await _context.Suppliers.Include(p => p.Products).ThenInclude(p => p.Product).ThenInclude(p => p.Warehouses).ToListAsync();
         }
     }
 }
