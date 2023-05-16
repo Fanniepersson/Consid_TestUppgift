@@ -9,7 +9,8 @@ namespace Consid_TestUppgift.Interfaces
         public Task UpdateWarehouse(Warehouse warehouse);
         public Task<Warehouse>GetWarehouseById(int id);
         public Task<IEnumerable<Warehouse>> GetAllWarehouses();
-        public Task UpdateQuantityOfProductInWarehouse(int productId, int warehouseId, ProductWarehouse product);
+        public Task AddQuantityOfProductInWarehouse(int productId, int warehouseId, int amount, ProductWarehouse product);
+        public Task RemoveQuantityOfProductInWarehouse(int productId, int warehouseId, int amount, ProductWarehouse product);
 
     }
 }

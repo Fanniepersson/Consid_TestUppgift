@@ -19,17 +19,41 @@ namespace Consid_TestUppgift.Repositories
             await _context.SaveChangesAsync();
         }
 
-        //Update quantities of items available in a warehouse
-        public async Task UpdateQuantityOfProductInWarehouse(int productId, int warehouseId, ProductWarehouse product)
+        public async Task AddQuantityOfProductInWarehouse(int productId, int warehouseId, int amount, ProductWarehouse product)
         {
             var productInWarehouseToUpdate = await _context.ProductWarehouse.Where(x => x.WarehouseId == warehouseId).FirstOrDefaultAsync(p => p.ProductId == productId);
 
             if (productInWarehouseToUpdate != null)
             {
-                productInWarehouseToUpdate.QuantityInStock = product.QuantityInStock;
-                await _context.SaveChangesAsync();
+                if (amount > 0)
+                {
+                    productInWarehouseToUpdate.QuantityInStock = productInWarehouseToUpdate.QuantityInStock + amount;
+                    await _context.SaveChangesAsync();
+                }
+                else
+                {
+                    throw new ArgumentException("Can not add the selected amount, must be greater than 0");
+                }
             }
         }
+        public async Task RemoveQuantityOfProductInWarehouse(int productId, int warehouseId, int amount, ProductWarehouse product)
+        {
+            var productInWarehouseToUpdate = await _context.ProductWarehouse.Where(x => x.WarehouseId == warehouseId).FirstOrDefaultAsync(p => p.ProductId == productId);
+
+            if (productInWarehouseToUpdate != null)
+            {
+                if (amount < productInWarehouseToUpdate.QuantityInStock)
+                {
+                    productInWarehouseToUpdate.QuantityInStock = productInWarehouseToUpdate.QuantityInStock - amount;
+                    await _context.SaveChangesAsync();
+                }
+                else
+                {
+                    throw new ArgumentException("Can not remove the selected amount");
+                }
+            }
+        }
+
 
         public async Task DeleteWarehouse(int id)
         {
