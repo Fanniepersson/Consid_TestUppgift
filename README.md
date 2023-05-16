@@ -20,3 +20,6 @@
 ### Reflektioner
 Jag valde att skapa tabellerna supplier, product, warehouse med many-to-many relations mellan product och supplier, samt product och warehouse och då ha två kopplingstabeller(ProductSupplier och ProductWarehouse).
 Jag valde att använda repository pattern för att skapa ett abstraktions lager mellan controllern och databasen och för att koden ser mer städad ut när den är uppdelad. Jag ville implementera ett UI och såg det som ett bra tillfälle att öva på det. Därför valde jag att skapa UI:t i Angular.
+
+#### Jag valde att använda en Kanban board i Trello, för att få en tydlig överblick på vilka uppgifter jag gjort och vilka jag hade kvar att göra.
+https://trello.com/b/124Pl5J4/considtestuppgift
